@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Generation and Forecast Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+                .result-card {
+            margin-top: 20px;
+        }
+.result-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="overflow-auto" style="max-height: 80vh;">
+            <form id="prediction-form">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Energy Generation and Forecast Prediction</h5>
+                <!-- <form  id="prediction-form" method="post"> -->
+                    <!-- Input fields go here -->
+                    <div class="form-group">
+                        <label for="generation_biomass">Generation Biomass:</label>
+                        <input type="number" class="form-control" id="generation_biomass" name="generation_biomass" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_fossil_brown_coal_lignite">Generation Fossil Brown Coal/Lignite:</label>
+                        <input type="number" class="form-control" id="generation_fossil_brown_coal_lignite" name="generation_fossil_brown_coal_lignite" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_fossil_coal-derived_gas">Generation Fossil Coal-Derived Gas:</label>
+                        <input type="number" class="form-control" id="generation_fossil_coal-derived_gas" name="generation_fossil_coal-derived_gas" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_fossil_gas">Generation Fossil Gas:</label>
+                        <input type="number" class="form-control" id="generation_fossil_gas" name="generation_fossil_gas" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_fossil_hard_coal">Generation Fossil Hard Coal:</label>
+                        <input type="number" class="form-control" id="generation_fossil_hard_coal" name="generation_fossil_hard_coal" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_fossil_oil">Generation Fossil Oil:</label>
+                        <input type="number" class="form-control" id="generation_fossil_oil" name="generation_fossil_oil" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_fossil_oil_shale">Generation Fossil Oil Shale:</label>
+                        <input type="number" class="form-control" id="generation_fossil_oil_shale" name="generation_fossil_oil_shale" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_fossil_peat">Generation Fossil Peat:</label>
+                        <input type="number" class="form-control" id="generation_fossil_peat" name="generation_fossil_peat" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_geothermal">Generation Geothermal:</label>
+                        <input type="number" class="form-control" id="generation_geothermal" name="generation_geothermal" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_hydro_pumped_storage_consumption">Generation Hydro Pumped Storage Consumption:</label>
+                        <input type="number" class="form-control" id="generation_hydro_pumped_storage_consumption" name="generation_hydro_pumped_storage_consumption" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_hydro_run_of_river_and_poundage">Generation Hydro Run-of-River and Poundage:</label>
+                        <input type="number" class="form-control" id="generation_hydro_run_of_river_and_poundage" name="generation_hydro_run_of_river_and_poundage" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_hydro_water_reservoir">Generation Hydro Water Reservoir:</label>
+                        <input type="number" class="form-control" id="generation_hydro_water_reservoir" name="generation_hydro_water_reservoir" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_marine">Generation Marine:</label>
+                        <input type="number" class="form-control" id="generation_marine" name="generation_marine" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_nuclear">Generation Nuclear:</label>
+                        <input type="number" class="form-control" id="generation_nuclear" name="generation_nuclear" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_other">Generation Other:</label>
+                        <input type="number" class="form-control" id="generation_other" name="generation_other" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_other_renewable">Generation Other Renewable:</label>
+                        <input type="number" class="form-control" id="generation_other_renewable" name="generation_other_renewable" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_solar">Generation Solar:</label>
+                        <input type="number" class="form-control" id="generation_solar" name="generation_solar" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_waste">Generation Waste:</label>
+                        <input type="number" class="form-control" id="generation_waste" name="generation_waste" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_wind_offshore">Generation Wind Offshore:</label>
+                        <input type="number" class="form-control" id="generation_wind_offshore" name="generation_wind_offshore" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generation_wind_onshore">Generation Wind Onshore:</label>
+                        <input type="number" class="form-control" id="generation_wind_onshore" name="generation_wind_onshore" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="forecast_solar_day_ahead">Forecast Solar Day Ahead:</label>
+                        <input type="number" class="form-control" id="forecast_solar_day_ahead" name="forecast_solar_day_ahead" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="forecast_wind_onshore_day_ahead">Forecast Wind Onshore Day Ahead:</label>
+                        <input type="number" class="form-control" id="forecast_wind_onshore_day_ahead" name="forecast_wind_onshore_day_ahead" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="total_load_forecast">Total Load Forecast:</label>
+                        <input type="number" class="form-control" id="total_load_forecast" name="total_load_forecast" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="total_load_actual">Total Load Actual:</label>
+                        <input type="number" class="form-control" id="total_load_actual" name="total_load_actual" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price_day_ahead">Price Day Ahead:</label>
+                        <input type="number" class="form-control" id="price_day_ahead" name="price_day_ahead" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price_actual">Price Actual:</label>
+                        <input type="number" class="form-control" id="price_actual" name="price_actual" step="0.01" required>
+                    </div>
+                                       <button id="predict-button" class="btn btn-primary" disabled>Predict</button>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+   <div id="result-card" class="result-card"></div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script>
+        // JavaScript to handle button click and display results
+        document.getElementById("predict-button").addEventListener("click", function() {
+       
+            var results = generateResults();
+            // Display prediction results
+            showPredictionResult(results.price_actual);
+        });
+
+        function generateResults() {
+            var results = {};
+        
+            var fields = ["generation_biomass", "generation_fossil_brown_coal_lignite", "generation_fossil_coal_derived_gas",
+                          "generation_fossil_gas", "generation_fossil_hard_coal", "generation_fossil_oil",
+                          "generation_fossil_oil_shale", "generation_fossil_peat", "generation_geothermal",
+                          "generation_hydro_pumped_storage_consumption", "generation_hydro_run_of_river_and_poundage",
+                          "generation_hydro_water_reservoir", "generation_marine", "generation_nuclear", "generation_other",
+                          "generation_other_renewable", "generation_solar", "generation_waste", "generation_wind_offshore",
+                          "generation_wind_onshore", "forecast_solar_day_ahead", "forecast_wind_onshore_day_ahead",
+                          "total_load_forecast", "total_load_actual", "price_day_ahead", "price_actual"];
+            fields.forEach(function(field) {
+                results[field] = (Math.random() * (80 - 20) + 20).toFixed(2); //
+            });
+            return results;
+        }
+
+        function showPredictionResult(priceActual) {
+            // Clear previous result if any
+            var resultCard = document.getElementById("result-card");
+            resultCard.innerHTML = ""; // Clear previous result
+            // Display new result in a card
+            var resultItem = document.createElement("p");
+            resultItem.innerHTML = "<strong>Price Actual:</strong> " + priceActual;
+            resultCard.appendChild(resultItem);
+            // Scroll to the result card
+            resultCard.scrollIntoView({ behavior: 'smooth' });
+        }
+        var form = document.getElementById("prediction-form");
+        form.addEventListener("input", function() {
+            var predictButton = document.getElementById("predict-button");
+            if (form.checkValidity()) {
+                predictButton.disabled = false; // Enable predict button if form is valid
+            } else {
+                predictButton.disabled = true; // Disable predict button if form is invalid
+            }
+        });
+    </script>
+   
+    </body>
+    </html>

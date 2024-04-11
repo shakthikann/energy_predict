@@ -38,10 +38,6 @@
                 <h5 class="card-title">Energy Generation and Forecast Prediction</h5>
                 <!-- <form  id="prediction-form" method="post"> -->
                     <!-- Input fields go here -->
-                <div class="form-group">
-                        <label for=Year">Year</label>
-                        <input type="number" class="form-control" id="generation_biomass" name="generation_biomass" step="0.01" required>
-                </div>
                     <div class="form-group">
                         <label for="generation_biomass">Generation Biomass:</label>
                         <input type="number" class="form-control" id="generation_biomass" name="generation_biomass" step="0.01" required>
@@ -142,8 +138,11 @@
                         <label for="price_day_ahead">Price Day Ahead:</label>
                         <input type="number" class="form-control" id="price_day_ahead" name="price_day_ahead" step="0.01" required>
                     </div>
-                    
-                                       <button id="predict-button" class="btn btn-primary" disabled>Predict</button>
+                    <div class="form-group">
+                        <label for="price_actual">Price Actual:</label>
+                        <input type="number" class="form-control" id="price_actual" name="price_actual" step="0.01" required>
+                    </div>
+                                       <button id="predict-button" class="btn btn-primary">Predict</button>
                     
             </div>
         </div>
@@ -193,14 +192,14 @@
             resultCard.scrollIntoView({ behavior: 'smooth' });
         }
         var form = document.getElementById("prediction-form");
-        form.addEventListener("input", function() {
-            var predictButton = document.getElementById("predict-button");
-            if (form.checkValidity()) {
-                predictButton.disabled = false; // Enable predict button if form is valid
-            } else {
-                predictButton.disabled = true; // Disable predict button if form is invalid
-            }
-        });
+        // form.addEventListener("input", function() {
+        //     var predictButton = document.getElementById("predict-button");
+        //     if (form.checkValidity()) {
+        //         predictButton.disabled = false; // Enable predict button if form is valid
+        //     } else {
+        //         predictButton.disabled = true; // Disable predict button if form is invalid
+        //     }
+        // });
     </script>
    
     </body>

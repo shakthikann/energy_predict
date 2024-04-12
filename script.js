@@ -20,7 +20,7 @@ const data = ["generation_biomass", "generation_fossil_brown_coal_lignite", "gen
       fetch(url, options)
         .then(response => response.json())
         .then(responseJson => {
-          renderWaterQualityResult(responseJson);
+          renderEnergyQualityResult(responseJson);
         })
         .catch(error => {
           console.error('Error:', error);
